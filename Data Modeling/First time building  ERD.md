@@ -1,4 +1,4 @@
- ### 🐼Create an ER-Diagram with dbdiagram.io (On Browser)
+ ### 🐼Create an ER-Diagram with [dbdiagram.io](https://dbdiagram.io) (On Browser)
 ***
 👋 Hi everyone, I'm currently learning how to make an ER-Diagram with dbdiagram. The language used for writing is DBML (Database Markup Language), and it's super easy to learn!
 
