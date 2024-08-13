@@ -1,0 +1,113 @@
+// Practice Create a ERDiagram
+// Create entity 
+
+Table media_types {
+  MediaTypeId int [pk]
+  Name nvarchar(120)
+}
+
+Table genres {
+  GenreId int [pk]
+  Name nvarchar(120)
+}
+
+Table playlists {
+  PlaylistId int [pk]
+  Name nvarchar(120)
+}
+
+Table playlist_track {
+  PlaylistId int
+  TrackId int
+  indexes  {
+    (PlaylistId,TrackId) [pk]
+  }
+} 
+
+Table tracks {
+  TrackId int [pk]
+  Name nvarchar(200)
+  AlbumId int
+  MeadiaTypeId int
+  GenreId int
+  Composer nvarchar(220)
+  Milliseconds int
+  Byes int
+  UnitPrice numeric
+}
+
+Table artists {
+  ArtistId int [pk]
+  Name nvarchar(120)
+}
+
+Table invoices {
+  InvoiceId int [pk]
+  CustomerId int
+  InvoiceDate datetime
+  BillingAddress nvarchar(120)
+  BillingCity nvarchar(120)
+}
+
+Table invoice_items {
+  InvoiceItemId int [pk]
+  InvoiceId int
+  TrackId  int
+  UnitPrice numeric
+  Quantity int
+}
+
+Table albums {
+  AlbumId int [pk]
+  Title nvarchar(160)
+  ArtitsId int
+}
+
+Table customers {
+  CustomerId integer [primary key]
+  FirstName nvarchar(40)
+  LastName nvarchar(20)
+  Company nvarchar(80)
+  Address nvarchar(70)
+  City nvarchar(40)
+  State nvarchar(40)
+  Country nvarchar(40)
+  PostalCode nvarchar(10)
+  Phone nvarchar(24)
+  Fax nvarchar(24)
+  Email nvarchar(60)
+  SupportRepId int
+}
+
+Table employees {
+  EmployeeId int [pk]
+  FirstName nvarchar(20)
+  LastName nvarchar(20)
+  Title nvarchar(30)
+  RepostsTo int
+  BirthDate datetime
+  HireDate datetime
+  Address nvarchar(70)
+}
+
+// Create Relatoinship
+Ref: media_types.MediaTypeId < tracks.MeadiaTypeId
+
+Ref: genres.GenreId < tracks.GenreId
+
+Ref: playlists.PlaylistId - playlist_track.PlaylistId
+
+Ref: playlist_track.TrackId - tracks.TrackId
+
+Ref: artists.ArtistId < albums.ArtitsId
+
+Ref: albums.AlbumId < tracks.AlbumId
+
+Ref: tracks.TrackId < invoice_items.InvoiceItemId
+
+Ref: invoice_items.InvoiceId > invoices.InvoiceId
+
+Ref: customers.CustomerId < invoices.CustomerId
+
+Ref: customers.SupportRepId > employees.EmployeeId
+
